@@ -18,7 +18,8 @@ A single-page, responsive marketing website for a fictional healthcare clinic �
 - **"How it works"** three-step sequence, a **stats band**, and **testimonials** with avatars and star ratings.
 - **Lead-magnet capture** — a gated "Family Health Checklist" with email-only opt-in and inline validation.
 - **FAQ accordion** built on native `<details>`, backed by `FAQPage` structured data.
-- **Enquiry form** with client-side validation (name, email, phone), inline per-field error messages, and an accessible success confirmation.
+- **Enquiry form** with client-side validation (name, email, phone), inline per-field error messages, and an accessible success confirmation — submissions delivered by email via [FormSubmit](https://formsubmit.co) (no backend).
+- **Floating WhatsApp chat widget** — a pulsing launcher in the bottom-right that opens a panel of suggested questions; each opens WhatsApp with the question pre-filled.
 - **SEO-ready** — descriptive title/meta, canonical + Open Graph/Twitter tags, and `MedicalClinic` + `FAQPage` JSON-LD schema.
 - **Fade-in-on-scroll** animations via `IntersectionObserver`.
 - **Fully responsive**, mobile-first layout with a calming green medical palette.
@@ -37,7 +38,7 @@ A single-page, responsive marketing website for a fictional healthcare clinic �
 healthcare/
 ├── index.html      # Semantic markup — navbar, hero, services, testimonials, form, footer
 ├── styles.css      # All styling; design system lives in :root CSS custom properties
-├── script.js       # Behavior: mobile nav, form validation, fade-in, footer year
+├── script.js       # Behavior: mobile nav, form validation, fade-in, WhatsApp widget, footer year
 ├── CLAUDE.md       # Guidance for AI coding assistants
 ├── .mcp.json       # Project-level MCP servers (Playwright, for screenshots)
 ├── docs/
@@ -68,7 +69,8 @@ xdg-open index.html  # Linux
 
 - **Colors & spacing** — edit the CSS custom properties in the `:root` block at the top of [`styles.css`](styles.css). The whole theme is driven from there.
 - **Content** — edit the copy directly in [`index.html`](index.html).
-- **Form submission** — the form is currently client-side only and logs the submission to the console. Wire a real backend at the clearly marked `// TODO: POST to a real API endpoint here` block in [`script.js`](script.js).
+- **Form submission** — the enquiry form posts to [FormSubmit](https://formsubmit.co), which emails each submission to the address in the `FORMSUBMIT_EMAIL` constant at the top of [`script.js`](script.js). Change that constant to your own address (the first submission triggers a one-time activation email you must confirm).
+- **WhatsApp widget** — change the number in the `data-phone` attribute on `#waWidget` in [`index.html`](index.html), and edit the `.wa-chip` suggested questions there too.
 
 > **Note:** `script.js` couples to the HTML by element `id` (`enquiryForm`, `navToggle`, `navMenu`, `formStatus`, `year`, and the form fields). If you rename an `id` in the HTML, update `script.js` to match.
 

@@ -5,6 +5,9 @@
 (function () {
   'use strict';
 
+  // Address that enquiry-form submissions are emailed to via FormSubmit.
+  var FORMSUBMIT_EMAIL = 'angch@tertiaryinfotech.com';
+
   /* ---------------------------------------------------------
      1. FOOTER YEAR — auto-fill current year
      --------------------------------------------------------- */
@@ -94,7 +97,49 @@
   }
 
   /* ---------------------------------------------------------
-     5. ENQUIRY FORM — validation + submission
+     5. FLOATING WHATSAPP WIDGET — open/close panel + suggested queries
+     Each chip opens WhatsApp with the question pre-filled.
+     --------------------------------------------------------- */
+  var waWidget = document.getElementById('waWidget');
+  if (waWidget) {
+    var waLauncher = document.getElementById('waLauncher');
+    var waPanel = document.getElementById('waPanel');
+    var waClose = document.getElementById('waClose');
+    var waPhone = (waWidget.getAttribute('data-phone') || '').replace(/\D/g, '');
+
+    function waSetOpen(open) {
+      waWidget.classList.toggle('is-open', open);
+      waLauncher.setAttribute('aria-expanded', String(open));
+      if (open) {
+        waPanel.hidden = false;
+      } else {
+        waPanel.hidden = true;
+        waLauncher.focus();
+      }
+    }
+
+    waLauncher.addEventListener('click', function () {
+      waSetOpen(waPanel.hidden);
+    });
+
+    if (waClose) waClose.addEventListener('click', function () { waSetOpen(false); });
+
+    // Close on Escape while the panel is open
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !waPanel.hidden) waSetOpen(false);
+    });
+
+    // Each suggestion opens WhatsApp with the question as the first message
+    waPanel.addEventListener('click', function (e) {
+      var chip = e.target.closest('.wa-chip');
+      if (!chip) return;
+      var text = encodeURIComponent(chip.textContent.trim());
+      window.open('https://wa.me/' + waPhone + '?text=' + text, '_blank', 'noopener');
+    });
+  }
+
+  /* ---------------------------------------------------------
+     6. ENQUIRY FORM — validation + submission
      --------------------------------------------------------- */
   var form = document.getElementById('enquiryForm');
   if (!form) return;
@@ -183,23 +228,48 @@
     };
 
     // ============================================================
-    // TODO: POST to a real API endpoint here.
-    // Replace the console.log below with e.g.:
-    //   fetch('https://api.bluehavenhealth.com/appointments', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(formData)
-    //   })
-    //   .then(function (res) { ... })
-    //   .catch(function (err) { ... });
+    // Submit via FormSubmit (https://formsubmit.co) — no backend needed.
+    // Posts to the AJAX endpoint, which emails the submission to
+    // FORMSUBMIT_EMAIL and returns JSON. NOTE: the first-ever submission
+    // to a new address triggers a one-time activation email you must
+    // confirm before delivery starts.
     // ============================================================
-    console.log('Appointment request submitted:', formData);
+    var submitBtn = form.querySelector('[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
 
-    // Show inline confirmation and reset the form
-    if (statusEl) {
-      statusEl.textContent = "Thank you! We'll contact you shortly to confirm your appointment.";
-      statusEl.hidden = false;
-    }
-    form.reset();
+    fetch('https://formsubmit.co/ajax/' + encodeURIComponent(FORMSUBMIT_EMAIL), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        preferredDate: formData.preferredDate || 'Not specified',
+        message: formData.message || 'No message',
+        _subject: 'New appointment request — BlueHaven Health'
+      })
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data && (data.success === true || data.success === 'true')) {
+          if (statusEl) {
+            statusEl.textContent = "Thank you! We'll contact you shortly to confirm your appointment.";
+            statusEl.hidden = false;
+          }
+          form.reset();
+        } else {
+          throw new Error(data && data.message ? data.message : 'Submission failed');
+        }
+      })
+      .catch(function (err) {
+        console.error('Appointment submission failed:', err);
+        if (statusEl) {
+          statusEl.textContent = 'Sorry, something went wrong. Please try again or call us directly.';
+          statusEl.hidden = false;
+        }
+      })
+      .finally(function () {
+        if (submitBtn) submitBtn.disabled = false;
+      });
   });
 })();

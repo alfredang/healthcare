@@ -1,6 +1,10 @@
 # Local Claude Code tooling (skills, commands, hooks — not part of the site)
 .claude/
 
+# Local Playwright MCP artifacts (snapshots, console logs, screenshots)
+.playwright-mcp/
+enquiry-form-success.png
+
 # Environment & secrets
 .env
 .env.*
