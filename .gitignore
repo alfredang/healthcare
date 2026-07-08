@@ -1,0 +1,24 @@
+# Local Claude Code tooling (skills, commands, hooks — not part of the site)
+.claude/
+
+# Environment & secrets
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+id_rsa
+credentials
+secrets.*
+
+# Dependencies (in case tooling is added later)
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
