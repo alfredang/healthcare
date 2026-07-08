@@ -53,15 +53,53 @@
     faders.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var PHONE_RE = /^[+()\-\s\d]{7,}$/; // at least 7 chars of digits/phone punctuation
+
   /* ---------------------------------------------------------
-     4. ENQUIRY FORM — validation + submission
+     4. LEAD MAGNET — email-only capture (Family Health Checklist)
+     --------------------------------------------------------- */
+  var leadForm = document.getElementById('leadForm');
+  if (leadForm) {
+    var leadInput = document.getElementById('leadEmail');
+    var leadStatus = document.getElementById('leadStatus');
+    var leadErr = document.getElementById('err-leadEmail');
+
+    leadInput.addEventListener('input', function () {
+      leadInput.closest('.form-group').classList.remove('invalid');
+      if (leadErr) leadErr.textContent = '';
+    });
+
+    leadForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (leadStatus) { leadStatus.hidden = true; leadStatus.textContent = ''; }
+
+      var email = leadInput.value.trim();
+      if (!email || !EMAIL_RE.test(email)) {
+        leadInput.closest('.form-group').classList.add('invalid');
+        if (leadErr) leadErr.textContent = 'Please enter a valid email address.';
+        leadInput.focus();
+        return;
+      }
+
+      // TODO: POST to your email/ESP endpoint here (e.g. Mailchimp, ConvertKit).
+      console.log('Lead magnet signup:', { email: email, magnet: 'family-health-checklist', submittedAt: new Date().toISOString() });
+
+      if (leadStatus) {
+        leadStatus.textContent = "You're in! Check your inbox for the Family Health Checklist.";
+        leadStatus.hidden = false;
+      }
+      leadForm.reset();
+    });
+  }
+
+  /* ---------------------------------------------------------
+     5. ENQUIRY FORM — validation + submission
      --------------------------------------------------------- */
   var form = document.getElementById('enquiryForm');
   if (!form) return;
 
   var statusEl = document.getElementById('formStatus');
-  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  var PHONE_RE = /^[+()\-\s\d]{7,}$/; // at least 7 chars of digits/phone punctuation
 
   // Helpers to show/clear a field-level error message
   function setError(fieldId, message) {

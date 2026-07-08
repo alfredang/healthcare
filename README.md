@@ -13,19 +13,23 @@ A single-page, responsive marketing website for a fictional healthcare clinic �
 ## Features
 
 - **Sticky navbar** with smooth-scroll anchor navigation and a mobile hamburger menu.
-- **Hero section** with a photographic background, headline, dual call-to-action buttons, and trust indicators.
-- **Services grid** — responsive cards, each with a photo and a floating icon badge.
-- **Testimonials** — patient cards with avatars, star ratings, and quotes.
+- **Two-column hero** with high-contrast copy, floating social-proof cards, a live "accepting patients" pulse, and an animated **ECG pulse-line** signature motif.
+- **Services grid** — responsive cards led by clean inline **SVG icons** (no emoji).
+- **"How it works"** three-step sequence, a **stats band**, and **testimonials** with avatars and star ratings.
+- **Lead-magnet capture** — a gated "Family Health Checklist" with email-only opt-in and inline validation.
+- **FAQ accordion** built on native `<details>`, backed by `FAQPage` structured data.
 - **Enquiry form** with client-side validation (name, email, phone), inline per-field error messages, and an accessible success confirmation.
+- **SEO-ready** — descriptive title/meta, canonical + Open Graph/Twitter tags, and `MedicalClinic` + `FAQPage` JSON-LD schema.
 - **Fade-in-on-scroll** animations via `IntersectionObserver`.
 - **Fully responsive**, mobile-first layout with a calming green medical palette.
-- **Accessible** — semantic HTML, labels on every input, `alt`/`aria-label` on media, keyboard-friendly nav, and a `prefers-reduced-motion` fallback.
+- **Accessible** — WCAG-minded: skip link, semantic HTML, labels on every input, `alt`/`aria-label` on media, keyboard-friendly nav, ≥44px touch targets, and a `prefers-reduced-motion` fallback.
 
 ## Tech stack
 
-- **HTML5** — semantic markup
+- **HTML5** — semantic markup + JSON-LD structured data
 - **CSS3** — custom properties (design tokens), Flexbox/Grid, mobile-first media queries
 - **Vanilla JavaScript** — no libraries; wrapped in an IIFE, loaded with `defer`
+- **Type** — [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) (display) + [Public Sans](https://fonts.google.com/specimen/Public+Sans) (body), via Google Fonts
 
 ## Project structure
 

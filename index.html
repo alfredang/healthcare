@@ -3,17 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BlueHaven Health — Compassionate Care, Close to You</title>
-  <meta name="description" content="BlueHaven Health Clinic — compassionate, certified medical care for your whole family. Book an appointment today." />
 
-  <!-- Google Font: Inter (system-sans fallback in the CSS stack if offline) -->
+  <!-- ============================================================
+       SEO — title, description, canonical, social cards
+       (seo-audit: unique title 50–60c, meta 150–160c, OG/Twitter)
+       ============================================================ -->
+  <title>BlueHaven Health | Family Clinic &amp; Same-Day Care in Riverside</title>
+  <meta name="description" content="BlueHaven Health is a Riverside family clinic offering same-day appointments, board-certified doctors, and 24/7 urgent care. Book your visit online today." />
+  <link rel="canonical" href="https://alfredang.github.io/healthcare/" />
+  <meta name="theme-color" content="#15803d" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BlueHaven Health | Compassionate Family Care in Riverside" />
+  <meta property="og:description" content="Same-day appointments, board-certified doctors, and 24/7 urgent care. Book your visit online today." />
+  <meta property="og:url" content="https://alfredang.github.io/healthcare/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=1200&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BlueHaven Health | Compassionate Family Care" />
+  <meta name="twitter:description" content="Same-day appointments, board-certified doctors, and 24/7 urgent care." />
+
+  <!-- Fonts: Bricolage Grotesque (display) + Public Sans (body).
+       A distinctive, accessible pairing — not the default Inter. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- ============================================================
+       STRUCTURED DATA — MedicalClinic + rating (seo-audit / E-E-A-T)
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "BlueHaven Health",
+    "description": "Family clinic offering same-day appointments, board-certified doctors, and 24/7 urgent care in Riverside, CA.",
+    "url": "https://alfredang.github.io/healthcare/",
+    "telephone": "+1-555-123-4567",
+    "email": "hello@bluehavenhealth.com",
+    "priceRange": "$$",
+    "image": "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=1200&q=80",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "128 Wellness Avenue",
+      "addressLocality": "Riverside",
+      "addressRegion": "CA",
+      "postalCode": "92501",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }],
+    "medicalSpecialty": ["PrimaryCare","Cardiovascular","Dentistry","Psychiatric"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1284"
+    }
+  }
+  </script>
 </head>
 <body>
+
+  <!-- Accessibility: skip to main content -->
+  <a href="#home" class="skip-link">Skip to content</a>
 
   <!-- ============================================================
        NAVBAR (sticky)
@@ -21,7 +79,6 @@
   <header class="navbar" id="top">
     <div class="container nav-inner">
       <a href="#home" class="brand" aria-label="BlueHaven Health home">
-        <!-- Simple heart/pulse logo -->
         <svg class="brand-logo" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
           <path d="M12 21s-7.5-4.9-10-9.2C.4 8.8 2 5 5.5 5c2 0 3.3 1.1 4.1 2.3C10.2 6.1 11.5 5 13.5 5 17 5 18.6 8.8 17 11.8 14.5 16.1 12 21 12 21z" fill="currentColor"/>
           <path d="M3 12h4l1.5-3 2 6 1.5-3H21" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -37,10 +94,11 @@
 
       <nav class="nav-menu" id="navMenu" aria-label="Primary">
         <ul>
-          <li><a href="#home">Home</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact" class="nav-cta">Contact</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact" class="nav-cta">Book a Visit</a></li>
         </ul>
       </nav>
     </div>
@@ -48,40 +106,70 @@
 
   <main>
     <!-- ============================================================
-         1. HERO
+         1. HERO — light, high-contrast, two-column with ECG signature
          ============================================================ -->
     <section class="hero" id="home">
       <div class="container hero-inner">
         <div class="hero-content fade-in">
-          <p class="hero-eyebrow">Welcome to BlueHaven Health</p>
-          <h1 class="hero-title">Compassionate Care,<br />Close to You</h1>
+          <p class="hero-eyebrow"><span class="pulse-dot" aria-hidden="true"></span> Accepting new patients in Riverside</p>
+          <h1 class="hero-title">Compassionate care, <span class="hero-accent">close to you</span></h1>
           <p class="hero-subtitle">
-            Trusted family medicine, specialist consultations, and 24/7 urgent care —
-            delivered by certified doctors who put your wellbeing first.
+            Same-day appointments with board-certified doctors who listen. Family medicine,
+            specialist consultations, and 24/7 urgent care — all under one roof.
           </p>
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-accent">Book an Appointment</a>
-            <a href="#services" class="btn btn-outline">Our Services</a>
+            <a href="#contact" class="btn btn-primary">Book an Appointment</a>
+            <a href="#services" class="btn btn-ghost">Explore Services</a>
           </div>
 
-          <!-- Trust indicators strip -->
           <ul class="trust-strip" aria-label="Why patients trust us">
-            <li>
-              <strong>24/7</strong>
-              <span>Support</span>
-            </li>
-            <li>
-              <strong>Certified</strong>
-              <span>Doctors</span>
-            </li>
-            <li>
-              <strong>10,000+</strong>
-              <span>Patients</span>
-            </li>
+            <li><strong>4.9<span class="unit">/5</span></strong><span>1,284 reviews</span></li>
+            <li><strong>24/7</strong><span>Urgent care</span></li>
+            <li><strong>10,000+</strong><span>Patients cared for</span></li>
           </ul>
         </div>
+
+        <!-- Hero visual: photo + floating proof cards -->
+        <div class="hero-visual fade-in" aria-hidden="false">
+          <div class="hero-photo">
+            <img src="https://images.unsplash.com/photo-1584516150909-c43483ee7932?auto=format&fit=crop&w=900&q=80" alt="A BlueHaven doctor smiling with a patient during a consultation" loading="eager" />
+          </div>
+          <div class="floating-card floating-card--rating">
+            <div class="stars" role="img" aria-label="Rated 4.9 out of 5 stars">★★★★★</div>
+            <p><strong>4.9</strong> average from real patients</p>
+          </div>
+          <div class="floating-card floating-card--book">
+            <span class="fc-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+            </span>
+            <div>
+              <p class="fc-title">Next-day slots</p>
+              <p class="fc-sub">Open now</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ECG pulse line — the signature motif -->
+      <div class="ecg" aria-hidden="true">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+          <path class="ecg-line" d="M0 30 L280 30 L300 30 L312 12 L326 48 L340 30 L360 30 L372 30 L384 6 L398 54 L412 30 L520 30 L540 30 L552 12 L566 48 L580 30 L1200 30" />
+        </svg>
       </div>
     </section>
+
+    <!-- Assurance bar -->
+    <div class="assurance">
+      <div class="container assurance-inner">
+        <span>Board-certified physicians</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Most major insurance accepted</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>On-site lab &amp; imaging</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Evening &amp; weekend hours</span>
+      </div>
+    </div>
 
     <!-- ============================================================
          2. SERVICES
@@ -90,7 +178,7 @@
       <div class="container">
         <div class="section-head fade-in">
           <p class="section-eyebrow">What we offer</p>
-          <h2 class="section-title">Comprehensive Care, All in One Place</h2>
+          <h2 class="section-title">Comprehensive care, all in one place</h2>
           <p class="section-intro">
             From routine check-ups to specialist treatment, our team supports you at every
             stage of life with modern facilities and a personal touch.
@@ -99,154 +187,237 @@
 
         <div class="grid grid-services">
           <article class="card service-card fade-in">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&w=600&q=80" alt="Doctor consulting with a patient" loading="lazy" />
-              <span class="service-icon" aria-hidden="true">🩺</span>
-            </div>
-            <div class="service-body">
-              <h3>Family Medicine</h3>
-              <p>Ongoing primary care for every member of your family, from newborns to seniors.</p>
-            </div>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <h3>Family Medicine</h3>
+            <p>Ongoing primary care for every member of your family, from newborns to seniors.</p>
           </article>
+
           <article class="card service-card fade-in">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1628348070889-cb656235b4eb?auto=format&fit=crop&w=600&q=80" alt="Stethoscope resting on a heart-rate readout" loading="lazy" />
-              <span class="service-icon" aria-hidden="true">❤️</span>
-            </div>
-            <div class="service-body">
-              <h3>Cardiology</h3>
-              <p>Heart health screenings, diagnostics, and treatment from board-certified specialists.</p>
-            </div>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
+            </span>
+            <h3>Cardiology</h3>
+            <p>Heart screenings, diagnostics, and treatment from board-certified specialists.</p>
           </article>
+
           <article class="card service-card fade-in">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=600&q=80" alt="Dental examination in a modern clinic" loading="lazy" />
-              <span class="service-icon" aria-hidden="true">🦷</span>
-            </div>
-            <div class="service-body">
-              <h3>Dental Care</h3>
-              <p>Gentle, modern dentistry — cleanings, cosmetic work, and emergency dental visits.</p>
-            </div>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>
+            </span>
+            <h3>Dental Care</h3>
+            <p>Gentle, modern dentistry — cleanings, cosmetic work, and emergency visits.</p>
           </article>
+
           <article class="card service-card fade-in">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=600&q=80" alt="Laboratory scientist analysing samples" loading="lazy" />
-              <span class="service-icon" aria-hidden="true">🧪</span>
-            </div>
-            <div class="service-body">
-              <h3>Lab &amp; Diagnostics</h3>
-              <p>On-site labs and imaging deliver fast, accurate results without the extra trip.</p>
-            </div>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>
+            </span>
+            <h3>Lab &amp; Diagnostics</h3>
+            <p>On-site labs and imaging deliver fast, accurate results without the extra trip.</p>
           </article>
+
           <article class="card service-card fade-in">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=600&q=80" alt="Counsellor and patient in a calm conversation" loading="lazy" />
-              <span class="service-icon" aria-hidden="true">🧠</span>
-            </div>
-            <div class="service-body">
-              <h3>Mental Wellness</h3>
-              <p>Confidential counselling and mental health support in a safe, welcoming space.</p>
-            </div>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+            </span>
+            <h3>Mental Wellness</h3>
+            <p>Confidential counselling and mental health support in a safe, welcoming space.</p>
           </article>
+
           <article class="card service-card fade-in">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80" alt="Nurse preparing a vaccine" loading="lazy" />
-              <span class="service-icon" aria-hidden="true">💉</span>
-            </div>
-            <div class="service-body">
-              <h3>Vaccinations</h3>
-              <p>Routine and travel immunizations to keep you and your loved ones protected.</p>
-            </div>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg>
+            </span>
+            <h3>Vaccinations</h3>
+            <p>Routine and travel immunizations to keep you and your loved ones protected.</p>
           </article>
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         3. TESTIMONIALS
+         3. HOW IT WORKS — a real 3-step sequence (numbered)
+         ============================================================ -->
+    <section class="section how" id="how">
+      <div class="container">
+        <div class="section-head fade-in">
+          <p class="section-eyebrow">Simple &amp; stress-free</p>
+          <h2 class="section-title">Care in three easy steps</h2>
+          <p class="section-intro">No phone tag, no long waits. Here's how quickly you can be seen.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step fade-in">
+            <span class="step-num">01</span>
+            <h3>Book online</h3>
+            <p>Pick a time that works — most patients get a same- or next-day slot.</p>
+          </li>
+          <li class="step fade-in">
+            <span class="step-num">02</span>
+            <h3>Meet your doctor</h3>
+            <p>Sit down with a physician who listens, in-clinic or by video visit.</p>
+          </li>
+          <li class="step fade-in">
+            <span class="step-num">03</span>
+            <h3>Follow-up &amp; care</h3>
+            <p>Get your plan, lab results, and prescriptions — all in your patient portal.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. STATS BAND
+         ============================================================ -->
+    <section class="stats-band">
+      <div class="container stats-grid">
+        <div class="stat fade-in"><strong>10,000+</strong><span>Patients cared for</span></div>
+        <div class="stat fade-in"><strong>15+</strong><span>Specialties on-site</span></div>
+        <div class="stat fade-in"><strong>4.9/5</strong><span>Average patient rating</span></div>
+        <div class="stat fade-in"><strong>24/7</strong><span>Urgent care line</span></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. TESTIMONIALS
          ============================================================ -->
     <section class="section testimonials" id="testimonials">
       <div class="container">
         <div class="section-head fade-in">
           <p class="section-eyebrow">Patient stories</p>
-          <h2 class="section-title">Loved by the People We Care For</h2>
-          <p class="section-intro">
-            Real experiences from patients who trust BlueHaven Health with their care.
-          </p>
+          <h2 class="section-title">Loved by the people we care for</h2>
+          <p class="section-intro">Real experiences from patients who trust BlueHaven Health with their care.</p>
         </div>
 
         <div class="grid grid-testimonials">
-          <!-- Card 1 -->
           <figure class="card testimonial-card fade-in">
+            <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+            <blockquote>"The doctors actually listened. I never felt rushed, and my treatment plan was explained in a way I could understand. Best clinic experience I've had."</blockquote>
             <div class="testimonial-head">
               <img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120&q=80" alt="Sarah Mitchell" loading="lazy" />
-              <div>
-                <figcaption class="testimonial-name">Sarah Mitchell</figcaption>
-                <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
-              </div>
+              <figcaption class="testimonial-name">Sarah Mitchell<span>Family medicine patient</span></figcaption>
             </div>
-            <blockquote>
-              "The doctors actually listened. I never felt rushed, and my treatment plan was
-              explained in a way I could understand. Best clinic experience I've had."
-            </blockquote>
           </figure>
 
-          <!-- Card 2 -->
           <figure class="card testimonial-card fade-in">
+            <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+            <blockquote>"Booked an appointment online and was seen the same day. The staff were warm and professional from the front desk to the consultation room."</blockquote>
             <div class="testimonial-head">
               <img class="avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="David Okafor" loading="lazy" />
-              <div>
-                <figcaption class="testimonial-name">David Okafor</figcaption>
-                <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
-              </div>
+              <figcaption class="testimonial-name">David Okafor<span>Urgent care patient</span></figcaption>
             </div>
-            <blockquote>
-              "Booked an appointment online and was seen the same day. The staff were warm and
-              professional from the front desk to the consultation room."
-            </blockquote>
           </figure>
 
-          <!-- Card 3 -->
           <figure class="card testimonial-card fade-in">
+            <div class="stars" role="img" aria-label="Rated 4 out of 5 stars">★★★★<span class="star-empty">★</span></div>
+            <blockquote>"Clean, modern, and calm. My kids are usually nervous about doctors, but the pediatric team made them feel completely at ease."</blockquote>
             <div class="testimonial-head">
               <img class="avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=120&h=120&q=80" alt="Priya Raman" loading="lazy" />
-              <div>
-                <figcaption class="testimonial-name">Priya Raman</figcaption>
-                <div class="stars" role="img" aria-label="Rated 4 out of 5 stars">★★★★<span class="star-empty">★</span></div>
-              </div>
+              <figcaption class="testimonial-name">Priya Raman<span>Parent of two</span></figcaption>
             </div>
-            <blockquote>
-              "Clean, modern, and calm. My kids are usually nervous about doctors, but the
-              pediatric team made them feel completely at ease."
-            </blockquote>
           </figure>
 
-          <!-- Card 4 -->
           <figure class="card testimonial-card fade-in">
+            <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+            <blockquote>"The 24/7 support line gave me real peace of mind when my father fell ill at night. Compassionate care, exactly when we needed it."</blockquote>
             <div class="testimonial-head">
               <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=80" alt="Jessica Chen" loading="lazy" />
-              <div>
-                <figcaption class="testimonial-name">Jessica Chen</figcaption>
-                <div class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
-              </div>
+              <figcaption class="testimonial-name">Jessica Chen<span>Caregiver</span></figcaption>
             </div>
-            <blockquote>
-              "The 24/7 support line gave me real peace of mind when my father fell ill at night.
-              Compassionate care, exactly when we needed it."
-            </blockquote>
           </figure>
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         4. ENQUIRY / APPOINTMENT FORM
+         6. LEAD MAGNET — gated Family Health Checklist (email capture)
+         ============================================================ -->
+    <section class="section lead" id="checklist">
+      <div class="container lead-inner">
+        <div class="lead-copy fade-in">
+          <p class="section-eyebrow">Free download</p>
+          <h2 class="section-title">The Family Health Checklist</h2>
+          <p class="section-intro">
+            A simple, one-page guide to the preventive screenings and check-ups your family
+            needs — organised by age. Print it, stick it on the fridge, never miss a check-up.
+          </p>
+          <ul class="lead-benefits">
+            <li>Recommended screenings from newborn to 65+</li>
+            <li>A yearly vaccination &amp; check-up calendar</li>
+            <li>Questions worth asking at your next visit</li>
+          </ul>
+        </div>
+
+        <form class="card lead-card fade-in" id="leadForm" novalidate>
+          <h3 class="lead-card-title">Get the checklist — it's free</h3>
+          <p class="lead-card-sub">Enter your email and we'll send the PDF straight to your inbox.</p>
+          <div class="form-group">
+            <label for="leadEmail">Email address</label>
+            <input type="email" id="leadEmail" name="leadEmail" autocomplete="email" placeholder="you@example.com" aria-describedby="err-leadEmail lead-note" />
+            <span class="error" id="err-leadEmail" aria-live="polite"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send me the checklist</button>
+          <p class="lead-note" id="lead-note">No spam, ever. Unsubscribe anytime.</p>
+          <p class="form-status" id="leadStatus" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. FAQ — accordion (also powers FAQPage schema below)
+         ============================================================ -->
+    <section class="section faq" id="faq">
+      <div class="container faq-inner">
+        <div class="section-head fade-in">
+          <p class="section-eyebrow">Good to know</p>
+          <h2 class="section-title">Frequently asked questions</h2>
+        </div>
+
+        <div class="faq-list fade-in">
+          <details class="faq-item">
+            <summary>Do you accept my insurance?</summary>
+            <div class="faq-answer"><p>We accept most major insurance plans, including PPO and HMO networks, as well as Medicare. If you're unsure, call us at +1 (555) 123-4567 and we'll verify your coverage before your visit.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How soon can I be seen?</summary>
+            <div class="faq-answer"><p>Most patients get a same-day or next-day appointment. For urgent concerns outside clinic hours, our 24/7 care line connects you with a clinician any time.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Do you offer video visits?</summary>
+            <div class="faq-answer"><p>Yes. Many primary care and mental wellness appointments can be done by secure video visit from home — just choose "Video visit" when you book.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can the whole family be seen at BlueHaven?</summary>
+            <div class="faq-answer"><p>Absolutely. Our family medicine team cares for every age, from newborns to seniors, and we can coordinate specialist care on-site so you don't have to travel between offices.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQPage structured data (seo-audit) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"Do you accept my insurance?","acceptedAnswer":{"@type":"Answer","text":"We accept most major insurance plans, including PPO and HMO networks, as well as Medicare. Call us at +1 (555) 123-4567 to verify your coverage before your visit."}},
+        {"@type":"Question","name":"How soon can I be seen?","acceptedAnswer":{"@type":"Answer","text":"Most patients get a same-day or next-day appointment. For urgent concerns outside clinic hours, our 24/7 care line connects you with a clinician any time."}},
+        {"@type":"Question","name":"Do you offer video visits?","acceptedAnswer":{"@type":"Answer","text":"Yes. Many primary care and mental wellness appointments can be done by secure video visit from home."}},
+        {"@type":"Question","name":"Can the whole family be seen at BlueHaven?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our family medicine team cares for every age, from newborns to seniors, with specialist care coordinated on-site."}}
+      ]
+    }
+    </script>
+
+    <!-- ============================================================
+         8. APPOINTMENT FORM
          ============================================================ -->
     <section class="section contact" id="contact">
       <div class="container contact-inner">
         <div class="section-head fade-in">
           <p class="section-eyebrow">Get in touch</p>
-          <h2 class="section-title">Request an Appointment</h2>
+          <h2 class="section-title">Request an appointment</h2>
           <p class="section-intro">
             Fill in the form and our care team will reach out to confirm your visit. Fields
             marked with <span class="req-star">*</span> are required.
@@ -287,9 +458,8 @@
             <textarea id="message" name="message" rows="4" placeholder="Tell us briefly what you need help with…"></textarea>
           </div>
 
-          <button type="submit" class="btn btn-accent btn-block">Submit Request</button>
+          <button type="submit" class="btn btn-primary btn-block">Submit Request</button>
 
-          <!-- Success confirmation (shown via JS) -->
           <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
@@ -297,7 +467,7 @@
   </main>
 
   <!-- ============================================================
-       5. FOOTER
+       FOOTER
        ============================================================ -->
   <footer class="footer">
     <div class="container footer-grid">
@@ -314,10 +484,11 @@
       <div class="footer-col">
         <h4>Quick Links</h4>
         <ul class="footer-links">
-          <li><a href="#home">Home</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Book a visit</a></li>
         </ul>
       </div>
 
