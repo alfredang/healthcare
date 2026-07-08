@@ -4,6 +4,10 @@ A single-page, responsive marketing website for a fictional healthcare clinic �
 
 🌐 **Live demo:** [alfredang.github.io/healthcare](https://alfredang.github.io/healthcare/)
 
+![BlueHaven Health — full page screenshot](docs/screenshot.png)
+
+> The screenshot above is captured automatically with Playwright. See [Screenshots](#screenshots) below.
+
 ---
 
 ## Features
@@ -31,6 +35,9 @@ healthcare/
 ├── styles.css      # All styling; design system lives in :root CSS custom properties
 ├── script.js       # Behavior: mobile nav, form validation, fade-in, footer year
 ├── CLAUDE.md       # Guidance for AI coding assistants
+├── .mcp.json       # Project-level MCP servers (Playwright, for screenshots)
+├── docs/
+│   └── screenshot.png   # Full-page screenshot used in this README
 └── .github/
     └── workflows/
         └── deploy.yml   # GitHub Actions → GitHub Pages deployment
@@ -64,6 +71,23 @@ xdg-open index.html  # Linux
 ## Deployment
 
 The site auto-deploys to **GitHub Pages** via GitHub Actions on every push to `main` — see [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). No manual steps required.
+
+## Screenshots
+
+The README screenshot ([`docs/screenshot.png`](docs/screenshot.png)) is generated with **[Playwright](https://playwright.dev)**, wired up as a project-level **MCP server** in [`.mcp.json`](.mcp.json):
+
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    }
+  }
+}
+```
+
+When this repo is opened in an MCP-aware client (e.g. Claude Code), the Playwright MCP server becomes available for driving a browser — navigating to the page, revealing the `.fade-in` sections, and capturing a full-page screenshot straight into `docs/`.
 
 ## License
 
