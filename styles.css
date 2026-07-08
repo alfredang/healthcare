@@ -186,10 +186,11 @@ summary:focus-visible {
 .nav-cta {
   background: var(--primary);
   color: #fff !important;
-  padding: .72rem 1.5rem;
+  padding: .85rem 1.9rem;
   border-radius: 999px;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: .01em;
   box-shadow: 0 6px 16px rgba(21, 128, 61, 0.28);
 }
 .nav-cta:hover { background: var(--primary-700); box-shadow: 0 8px 20px rgba(21, 128, 61, 0.35); }
